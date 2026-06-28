@@ -1,0 +1,28 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Generated lockfile is environment-specific for some teams; keep it by default.
+# (Remove the next line if you prefer committing Gemfile.lock — recommended.)
+# Gemfile.lock

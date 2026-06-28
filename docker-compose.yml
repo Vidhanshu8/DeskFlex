@@ -1,0 +1,51 @@
+# One command to run the whole stack:  docker compose up --build
+# Then open http://localhost:5173  (demo@deskflex.app / password123)
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: deskflex_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: root
+      DATABASE_NAME: deskflex_development
+      # Dev-only secret; override in any real deployment.
+      JWT_SECRET_KEY: dev_only_change_me_to_a_long_random_string
+      SECRET_KEY_BASE: dev_only_change_me_too_0123456789abcdef0123456789abcdef
+      FRONTEND_ORIGIN: http://localhost:5173
+      PORT: 3001
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    environment:
+      VITE_API_BASE_URL: http://localhost:3001/api/v1
+    ports:
+      - "5173:5173"
+
+volumes:
+  db_data:

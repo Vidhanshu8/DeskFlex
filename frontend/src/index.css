@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  /* Tabular figures for data so numbers don't jump as they change. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Thin, unobtrusive scrollbars inside the floor-plan viewport. */
+.plan-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+.plan-scroll::-webkit-scrollbar-thumb { background: rgba(120,150,200,0.35); border-radius: 99px; }
+.plan-scroll::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+# Ensure runtime dirs exist (they are gitignored / not in the image).
+mkdir -p tmp/pids log storage
+
+# Remove a stale server pid if the container was killed uncleanly.
+rm -f tmp/pids/server.pid
+
+# Create the DB if needed, run pending migrations, and seed on first run.
+# db:prepare is idempotent: safe on every container start.
+bundle exec rails db:prepare
+
+exec "$@"

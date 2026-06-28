@@ -1,0 +1,43 @@
+source "https://rubygems.org"
+
+# Core framework (API-only mode is configured in config/application.rb)
+gem "rails", "~> 7.1.3"
+
+# PostgreSQL as the database for Active Record
+gem "pg", "~> 1.5"
+
+# Puma web server
+gem "puma", ">= 6.0"
+
+# Secure password hashing for the User model (has_secure_password)
+gem "bcrypt", "~> 3.1.7"
+
+# Stateless JWT auth tokens
+gem "jwt", "~> 2.8"
+
+# Cross-origin requests from the React dev server / deployed frontend
+gem "rack-cors", "~> 2.0"
+
+# Load ENV vars from .env in development/test
+gem "dotenv-rails", "~> 3.1", groups: %i[development test]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", ">= 1.18", require: false
+
+# Time zone data for platforms that lack it
+gem "tzinfo-data", platforms: %i[windows jruby]
+
+group :development, :test do
+  # Debugger
+  gem "debug", platforms: %i[mri windows]
+end
+
+group :development do
+  # Speeds up commands by keeping the app running in the background
+  gem "spring"
+end
+
+group :test do
+  gem "rspec-rails", "~> 6.1"
+  gem "factory_bot_rails", "~> 6.4"
+end

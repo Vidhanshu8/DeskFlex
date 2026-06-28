@@ -1,0 +1,46 @@
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# See backend/.gitignore and frontend/.gitignore for per-app rules.
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+
+.bundle/
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Environment variables
+.env
+.env.*
+!.env.example
+ruby-home/.bundle/cache/
+# Generated lockfile is environment-specific for some teams; keep it by default.
+# (Remove the next line if you prefer committing Gemfile.lock — recommended.)
+# Gemfile.lock
